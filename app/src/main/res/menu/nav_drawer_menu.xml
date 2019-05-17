@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/ic_recent_black_24dp"
+        android:title="Recent"
+        android:id="@+id/navdrawer_recent"
+        />
+    <item
+        android:icon="@drawable/ic_offline_black_24dp"
+        android:title="Offline"
+        android:id="@+id/navdrawer_offline"
+        />
+    <item
+        android:icon="@drawable/ic_bin_black_24dp"
+        android:title="Bin"
+        android:id="@+id/navdrawer_bin"
+        />
+    <item
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:title="Notifications"
+        android:id="@+id/navdrawer_notifications"
+        />
+    <item
+        android:icon="@drawable/ic_backups_outline_black_24dp"
+        android:title="Backups"
+        android:id="@+id/navdrawer_backups"
+        />
+    <item
+        android:icon="@drawable/ic_help_outline_black_24dp"
+        android:title="Help &amp; feedback"
+        android:id="@+id/navdrawer_help"
+        />
+    <item
+        android:icon="@drawable/ic_storage_black_24dp"
+        android:title="Storage"
+        android:id="@+id/navdrawer_storage"
+        />
+</menu>

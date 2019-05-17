@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Google Drive Clone</string>
+    <string name="preference_file_key">sharedPrefFile</string>
+    <string name="grid_layout_key">gridLayout</string>
+    <string name="linear_layout_key">linearLayout</string>
+</resources>
