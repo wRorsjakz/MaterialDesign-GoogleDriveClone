@@ -8,84 +8,132 @@
     android:id="@+id/main_drawer_layout"
     tools:context=".MainActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <EditText
-            android:drawablePadding="24dp"
-            android:drawableLeft="@drawable/ic_dehaze_black_24dp"
-            android:textColor="@color/colorContentText"
-            android:hint="Search Drive"
-            android:background="@drawable/search_input_light"
-            android:id="@+id/main_search_input"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginRight="12dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.github.pavlospt.roundedletterview.RoundedLetterView
-            android:id="@+id/main_icon"
-            app:layout_constraintEnd_toEndOf="@+id/main_search_input"
-            app:layout_constraintTop_toTopOf="@id/main_search_input"
-            app:layout_constraintBottom_toBottomOf="@+id/main_search_input"
-            android:layout_width="32dp"
-            app:rlv_backgroundColorValue="@color/colorAccent"
-            android:layout_marginEnd="16dp"
-            app:rlv_titleSize="16sp"
-            app:rlv_titleText="N"
-            android:layout_height="32dp" />
-
-        <FrameLayout
-            android:id="@+id/main_fragment_container"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="55dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/main_bottom_nav"
-            app:layout_constraintTop_toBottomOf="@id/main_search_input"
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:id="@+id/main_coordinatorLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_above="@id/main_bottom_nav">
 
-        </FrameLayout>
+            <android.support.design.widget.AppBarLayout
+                android:fitsSystemWindows="true"
+                app:elevation="0dp"
+                android:background="?android:attr/windowBackground"
+                android:gravity="center_vertical|center_horizontal"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/main_appbarlayout"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/main_collapsingToolBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_scrollFlags="scroll|enterAlways">
+
+                    <android.support.v7.widget.Toolbar
+                        android:background="?android:attr/windowBackground"
+                        app:contentInsetStart="16dp"
+                        app:contentInsetEnd="16dp"
+                        app:elevation="0dp"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:layout_width="match_parent"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        android:layout_height="?attr/actionBarSize">
+
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <EditText
+                                android:id="@+id/main_search_input"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/search_input_light"
+                                android:paddingStart="72dp"
+                                android:hint="Search Drive"
+                                android:paddingEnd="0dp"
+                                android:inputType="textPersonName"
+                                android:textColor="@color/colorDarkGrey"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <com.github.pavlospt.roundedletterview.RoundedLetterView
+                                android:id="@+id/main_icon"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_marginEnd="16dp"
+                                app:layout_constraintBottom_toBottomOf="@+id/main_search_input"
+                                app:layout_constraintEnd_toEndOf="@+id/main_search_input"
+                                app:layout_constraintTop_toTopOf="@id/main_search_input"
+                                app:rlv_backgroundColorValue="@color/colorAccent"
+                                app:rlv_titleSize="16sp"
+                                app:rlv_titleText="N" />
+
+                            <ImageButton
+                                android:id="@+id/main_hamurger_icon"
+                                android:background="@android:color/transparent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:src="@drawable/ic_dehaze_black_24dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </android.support.constraint.ConstraintLayout>
+
+                    </android.support.v7.widget.Toolbar>
+
+                </android.support.design.widget.CollapsingToolbarLayout>
+
+            </android.support.design.widget.AppBarLayout>
+
+            <FrameLayout
+                android:id="@+id/main_fragment_container"
+                app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </FrameLayout>
+
+            <android.support.design.widget.FloatingActionButton
+                android:src="@drawable/ic_add_white_24dp"
+                android:id="@+id/main_fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fabSize="normal"
+                android:background="@color/colorAccent"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"/>
+
+        </android.support.design.widget.CoordinatorLayout>
 
         <android.support.design.widget.BottomNavigationView
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
             app:itemTextColor="@color/colorAccent"
             app:itemTextAppearanceActive="@style/TextAppearance.AppCompat.Body2"
             android:id="@+id/main_bottom_nav"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:menu="@menu/bottom_nav_menu"
             android:background="?android:attr/windowBackground"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content" />
 
-        </android.support.design.widget.BottomNavigationView>
-
-        <android.support.design.widget.FloatingActionButton
-            android:src="@drawable/ic_add_white_24dp"
-            android:id="@+id/main_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fabSize="normal"
-            android:background="@color/colorAccent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/main_bottom_nav"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"/>
-
-    </android.support.constraint.ConstraintLayout>
+    </RelativeLayout>
 
 
     <android.support.design.widget.NavigationView

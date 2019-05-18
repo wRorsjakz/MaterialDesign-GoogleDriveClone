@@ -34,7 +34,6 @@ public class FilesFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setupViews(view);
         setupTabLayout();
-
     }
 
     private void setupViews(View view){
@@ -43,13 +42,22 @@ public class FilesFragment extends Fragment {
     }
 
     private void setupTabLayout(){
+
+        // Header for tabs
         titles.add("My Drive");
         titles.add("Computers");
-        fragments.add(new MyDriveFragment());
-        fragments.add(new ComputersFragment());
+
+        // Fragments
+        MyDriveFragment myDriveFragment = new MyDriveFragment();
+        ComputersFragment computersFragment = new ComputersFragment();
+        fragments.add(myDriveFragment);
+        fragments.add(computersFragment);
+
         filesPagerAdapter = new FilesPagerAdapter(getChildFragmentManager(), titles, fragments);
         viewPager.setAdapter(filesPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
     }
+
+
 }

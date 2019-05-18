@@ -37,7 +37,6 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
     // Key for sharedPref
     private static final String FILES_RV_LAYOUT_KEY = "filesRVLayout";
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,6 +48,7 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.my_drive_rv);
+        //recyclerView.canScrollVertically(-1);
         swipeRefreshLayout = view.findViewById(R.id.my_drive_swipeRefresh);
         fab = getActivity().findViewById(R.id.main_fab);
 
@@ -62,7 +62,6 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
 
         // FAB Scroll Listener
         RVScrollListenerHelper.setupFABScroll(fab, recyclerView);
-
     }
 
     /**
@@ -70,14 +69,14 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
      */
     private void initialiseRV(){
         recyclerView.setHasFixedSize(true);
-        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setNestedScrollingEnabled(true);
         adapter = new FilesRVAdapter(getContext(), items, layoutConfig);
         adapter.setFilesRVItemClickedListener(this);
 
         // Set layoutConfig manager based on configuration
         if(layoutConfig.equals(getString(R.string.grid_layout_key))){
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
-
+            // Set first item to span across 2 items (across the screen)
             gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int i) {
@@ -95,39 +94,6 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
         }
 
         recyclerView.setAdapter(adapter);
-    }
-
-    /**
-     * Set up some dummy data for the recyclerview to show
-     */
-    private void setupDummyData(){
-        items.add(new FilesRVModel("NULL", "Blue", "NULL")); // Index 0 is the RV Header
-
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Blue", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("CZ 1003 Project", "Yellow", "02/02/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Blue", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Red", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Red", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Pictures", "Yellow", "15/05/2019"));
-
-
     }
 
     private void setSwipeToRefresh(){
@@ -167,17 +133,57 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
         editor.apply();
 
         initialiseRV();
-
     }
 
+    /**
+     * RecyclerView Item Clicked
+     * @param position
+     */
     @Override
     public void onItemClicked(int position) {
         Toast.makeText(getContext(), "Position : " + position, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * RecyclerView Item Menu Clicked
+     * @param position
+     */
     @Override
     public void onItemMenuClicked(int position) {
         Toast.makeText(getContext(), "Menu Clicked: " + position , Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * Set up some dummy data for the recyclerview to show
+     */
+    private void setupDummyData(){
+        items.add(new FilesRVModel("NULL", "Blue", "NULL")); // Index 0 is the RV Header
+
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Blue", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
+        items.add(new FilesRVModel("CZ 1003 Project", "Yellow", "02/02/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Blue", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Red", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Red", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
+        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
+        items.add(new FilesRVModel("Pictures", "Yellow", "15/05/2019"));
+
+
     }
 
 }

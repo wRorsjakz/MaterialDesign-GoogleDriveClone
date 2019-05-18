@@ -1,5 +1,7 @@
 package com.example.googledriveclone.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,9 +33,10 @@ public class ComputersFragment extends Fragment implements FilesRVAdapter.filesR
     private ArrayList<FilesRVModel> items = new ArrayList<>();
     private int size;
     private String layoutConfig; // Store the layoutConfig config of RV in a temp variable
-
+    private SharedPreferences sharedPreferences;
     // Key for sharedPref
-    private static final String computers_rv_layout_key = "computersRVLayout";
+    private static final String COMPUTERS_RV_LAYOUT_KEY = "computersRVLayout";
+
 
     @Nullable
     @Override
@@ -46,30 +50,53 @@ public class ComputersFragment extends Fragment implements FilesRVAdapter.filesR
         recyclerView = view.findViewById(R.id.my_computer_rv);
         swipeRefreshLayout = view.findViewById(R.id.my_computer_swipeRefresh);
         fab = getActivity().findViewById(R.id.main_fab);
+
+        // Get layoutConfig mode from shared preference
+        sharedPreferences = getActivity().getSharedPreferences(COMPUTERS_RV_LAYOUT_KEY, Context.MODE_PRIVATE);
+        layoutConfig = sharedPreferences.getString(COMPUTERS_RV_LAYOUT_KEY, getString(R.string.grid_layout_key));
+
         setupDummyData();
-        setupRV();
+        initialiseRV();
         setupSwipeToRefresh();
+
         // FAB Scroll Listener
         RVScrollListenerHelper.setupFABScroll(fab, recyclerView);
     }
 
-    private void setupRV(){
+    private void initialiseRV(){
         recyclerView.setHasFixedSize(true);
-        recyclerView.setNestedScrollingEnabled(false);
-        adapter = new FilesRVAdapter(getContext(), items, getContext().getString(R.string.grid_layout_key));
+        recyclerView.setNestedScrollingEnabled(true);
+        adapter = new FilesRVAdapter(getContext(), items, layoutConfig);
         adapter.setFilesRVItemClickedListener(this);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
 
-        // RV Item at index 0 span across the screen
-        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int i) {
-                return i == 0 ? 2 : 1;
-            }
-        });
+        // Set layoutConfig manager based on configuration
+        configureRVLayout();
 
-        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
+    }
+
+    /**
+     * Configure RV Layout
+     */
+    private void configureRVLayout(){
+        if(layoutConfig.equals(getString(R.string.grid_layout_key))){
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2);
+            // Set first item to span across 2 items (across the screen)
+            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int i) {
+                    return i == 0 ? 2 : 1;
+                }
+            });
+
+            recyclerView.setLayoutManager(gridLayoutManager);
+
+        } else if(layoutConfig.equals(getString(R.string.linear_layout_key))){
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+            recyclerView.setLayoutManager(linearLayoutManager);
+
+        }
     }
 
     /**
@@ -81,7 +108,6 @@ public class ComputersFragment extends Fragment implements FilesRVAdapter.filesR
     }
 
     private void setupSwipeToRefresh(){
-
         //Set color of spinner
         SwipeRefreshHelper.setupSwipeRefreshBehaviour(swipeRefreshLayout, getContext());
 
@@ -103,11 +129,19 @@ public class ComputersFragment extends Fragment implements FilesRVAdapter.filesR
     }
 
     /**
-     * Toggle RecyclerView's layout between GridLayout and LinearLayout
+     * Fired when toggle icon pressed
+     * 1) Update sharedPref
      */
     @Override
     public void onLayoutToggle(String layout) {
+        layoutConfig = layout;
+        // Update sharedPref file
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(COMPUTERS_RV_LAYOUT_KEY, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(COMPUTERS_RV_LAYOUT_KEY, layout);
+        editor.apply();
 
+        initialiseRV();
     }
 
     @Override

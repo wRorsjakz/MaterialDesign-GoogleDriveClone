@@ -1,7 +1,6 @@
 package com.example.googledriveclone.RecyclerViewAdapters;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,7 +21,7 @@ public class FilesRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private Context context;
     private ArrayList<FilesRVModel> items;
     private filesRVItemClickedListener listener;
-    private String layoutConfig;
+    private String layoutConfig; // RecyclerView layout configuration
 
     public FilesRVAdapter(Context context, ArrayList<FilesRVModel> items, String layoutConfig) {
         this.context = context;
@@ -30,18 +29,20 @@ public class FilesRVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.layoutConfig = layoutConfig;
     }
 
-    // Interface for RV Item Clicked Listener
+    /**
+     *  Interface for RV Item Clicked Listener
+     */
     public interface filesRVItemClickedListener{
-        void onItemClicked(int position);
-        void onLayoutToggle(String layout);
-        void onItemMenuClicked(int position);
+        void onItemClicked(int position); // RV Item Clicked
+        void onLayoutToggle(String layout); // Icon to toggle layout of RV
+        void onItemMenuClicked(int position); // RV Item Menu Clicked
     }
 
     public void setFilesRVItemClickedListener(filesRVItemClickedListener listener){
         this.listener = listener;
     }
 
-    // RV Identifier
+    // RV Identifier for item type
     private static final int headerItemType = 0;
     private static final int fileItemType = 1;
 
