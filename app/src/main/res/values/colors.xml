@@ -19,4 +19,6 @@
     <color name="colorLightGrey">#d3d3d3</color>
     <color name="colorDarkGrey">#666666</color>
 
+    <color name="defaultBackgroundColor">#FAFAFA</color>
+
 </resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:id="@+id/activitySearch_relativeLayout"
+    tools:context=".SearchActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/searchActivity_appbarlayout"
+        android:background="@color/colorCardBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/searchActivity_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorCardBackground"
+            android:gravity="center_vertical|center_horizontal"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp"
+            app:elevation="0dp">
+
+            <EditText
+                android:id="@+id/searchActivity_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/search_input_light"
+                android:hint="Search Drive"
+                android:inputType="textPersonName"
+                android:paddingStart="8dp"
+                android:paddingEnd="0dp"
+                android:textColor="@color/colorDarkGrey"
+                app:elevation="0dp" />
+
+        </android.support.v7.widget.Toolbar>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+</RelativeLayout>
