@@ -2,8 +2,8 @@ package com.example.googledriveclone.Helper;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
+import androidx.core.content.ContextCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.googledriveclone.R;
 

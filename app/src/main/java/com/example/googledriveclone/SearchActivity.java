@@ -1,12 +1,11 @@
 package com.example.googledriveclone;
 
-import android.support.design.widget.AppBarLayout;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.appbar.AppBarLayout;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.transition.TransitionManager;
 import android.transition.Transition;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -61,6 +60,8 @@ public class SearchActivity extends AppCompatActivity {
                     for(int i = 0; i < childCount; i++){
                         toolbar.getChildAt(i).setVisibility(View.VISIBLE);
                     }
+
+                    editText.requestFocus();
                 }
             });
         }
