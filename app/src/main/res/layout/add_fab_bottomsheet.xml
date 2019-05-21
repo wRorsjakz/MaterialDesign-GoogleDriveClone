@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp">
+
+    <TextView
+        android:text="Create new"
+        android:textSize="22sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:layout_height="wrap_content" />
+
+    <!-- Row 1 -->
+
+    <LinearLayout
+        android:baselineAligned="false"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Folder button layout -->
+        <LinearLayout
+            android:id="@+id/add_fab_bs_folder"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:background="@drawable/circular_border_background">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_folder_grey_48dp"/>
+            </FrameLayout>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Folder"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <!-- Upload button -->
+
+        <LinearLayout
+            android:id="@+id/add_fab_bs_upload"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:background="@drawable/circular_border_background">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_file_upload_darkgrey_24dp"/>
+            </FrameLayout>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <!-- Scan button -->
+
+        <LinearLayout
+            android:id="@+id/add_fab_bs_scan"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:background="@drawable/circular_border_background">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_scan_darkgrey_24dp"/>
+            </FrameLayout>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Scan"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <!-- Row 2 -->
+
+    <LinearLayout
+        android:baselineAligned="false"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Google Docs Button -->
+        <LinearLayout
+            android:id="@+id/add_fab_bs_googledocs"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:background="@drawable/circular_border_background">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_scan_darkgrey_24dp"/>
+            </FrameLayout>
+
+            <TextView
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Google Docs"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <!-- Google Sheets button -->
+
+        <LinearLayout
+            android:id="@+id/add_fab_bs_googlesheets"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:background="@drawable/circular_border_background">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_file_upload_darkgrey_24dp"/>
+            </FrameLayout>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Google Sheets"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+        <!-- Google Slides button -->
+
+        <LinearLayout
+            android:id="@+id/add_fab_bs_googleslides"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:background="@drawable/circular_border_background">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/ic_scan_darkgrey_24dp"/>
+            </FrameLayout>
+
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Google Slides"
+                android:textSize="14sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

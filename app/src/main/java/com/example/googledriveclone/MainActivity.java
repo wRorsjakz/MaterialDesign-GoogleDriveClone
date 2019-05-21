@@ -4,17 +4,22 @@ import android.content.Intent;
 
 import androidx.annotation.NonNull;
 
+import com.example.googledriveclone.BottomSheet.AddBottomSheet;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.appcompat.widget.Toolbar;
+
 import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -23,6 +28,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.example.googledriveclone.Fragments.FilesFragment;
 import com.example.googledriveclone.Fragments.HomeFragment;
@@ -33,7 +39,8 @@ import com.example.googledriveclone.Transitions.FadeOutTransition;
 import com.example.googledriveclone.Transitions.SimpleTransitionListener;
 import com.github.pavlospt.roundedletterview.RoundedLetterView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements
+        BottomNavigationView.OnNavigationItemSelectedListener, AddBottomSheet.FabBottomSheetListener {
 
     private static final String TAG = "MainActivityTAG";
     // Views
@@ -50,16 +57,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private ImageButton hamburgerIcon;
     private int tbMargin_Horizontal, tbMargin_Vertical;
 
+    private AddBottomSheet addBottomSheet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         tbMargin_Horizontal = 12;
         tbMargin_Vertical = 4;
-        setupViews();
-        setupFAB();
+
+        initialiseViews();
         setIcon();
         setupHamburgerIcon();
+        setupFAB();
 
         searchInput.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,9 +78,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 transitionToSearch();
             }
         });
+
     }
 
-    private void setupViews() {
+    private void initialiseViews() {
         searchInput = findViewById(R.id.main_search_input);
         appBarLayout = findViewById(R.id.main_appbarlayout);
         toolbar = findViewById(R.id.main_toolbar);
@@ -112,16 +124,20 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
      * FloatingActionButton method
      */
     private void setupFAB() {
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                addBottomSheet = new AddBottomSheet();
+                addBottomSheet.setFabBottomSheetListener(MainActivity.this);
+                addBottomSheet.show(getSupportFragmentManager(), "addBottomSheet");
             }
         });
+
     }
 
     /**
-     * Set profileIcon for the round image view and onClickListener
+     * Set profile Icon for the round image view and onClickListener
      */
     private void setIcon() {
         profileIcon.setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent));
@@ -137,11 +153,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     /**
      * Handle hamburger icon onClickListener
      */
-    private void setupHamburgerIcon(){
+    private void setupHamburgerIcon() {
         hamburgerIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    drawerLayout.openDrawer(GravityCompat.START);
+                drawerLayout.openDrawer(GravityCompat.START);
 
             }
         });
@@ -215,5 +231,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         toolbar.findViewById(R.id.main_icon).setVisibility(View.VISIBLE);
         toolbar.setLayoutParams(layoutParams);
         searchInput.setHint("Search Drive");
+    }
+
+
+    @Override
+    public void onItemPressed(View view) {
+        Toast.makeText(this, "" + view.getId(), Toast.LENGTH_SHORT).show();
+        addBottomSheet.dismiss();
     }
 }

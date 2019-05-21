@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.googledriveclone.BottomSheet.AddBottomSheet;
 import com.example.googledriveclone.BottomSheet.DetailBottomSheet;
 import com.example.googledriveclone.Helper.RVScrollListenerHelper;
 import com.example.googledriveclone.Helper.SwipeRefreshHelper;
@@ -198,12 +199,13 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
         detailBottomSheet = new DetailBottomSheet();
         detailBottomSheet.setDetailBottomSheetListener(this);
         detailBottomSheet.show(getChildFragmentManager(), "detailBottomSheet");
-
     }
 
     @Override
     public void detailBSItemClicked(View view) {
+
         Toast.makeText(getContext(), view.getId() + "", Toast.LENGTH_SHORT).show();
         detailBottomSheet.dismiss(); // Close bottom sheet
     }
+
 }
