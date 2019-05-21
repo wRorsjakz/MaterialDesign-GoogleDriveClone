@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="16dp">
+
+    <RelativeLayout
+        android:id="@+id/detail_bottomsheet_profile"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/detail_bottomsheet_profilepic"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/man" />
+
+        <TextView
+            android:id="@+id/detail_bottomsheet_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@id/detail_bottomsheet_profilepic"
+            android:singleLine="true"
+            android:text="Nicholas Gan"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/detail_bottomsheet_name"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/detail_bottomsheet_profilepic"
+            android:singleLine="true"
+            android:text="email_address@gmail.com"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="6dp"
+        android:background="@color/colorLightGrey" />
+
+    <LinearLayout
+        android:id="@+id/file_detail_bs_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="34dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_share_darkgrey_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Share"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/file_detail_bs_addToStarred"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="34dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_star_border_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Add to Starred"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/colorLightGrey" />
+
+    <LinearLayout
+        android:id="@+id/file_detail_bs_linksharingoff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="34dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_link_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Link sharing off"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/file_detail_bs_copylink"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="34dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_content_copy_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Copy link"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="2dp"
+        android:background="@color/colorLightGrey" />
+
+    <LinearLayout
+        android:id="@+id/file_detail_bs_rename"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="34dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_mode_edit_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Rename"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/file_detail_bs_changecolour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="34dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_color_lens_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Change colour"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/file_detail_bs_move"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="34dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/folder_move" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Move"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/file_detail_bs_homescreen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="34dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/cellphone_nfc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Add to Home Screen"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/file_detail_bs_detailsandactivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="34dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/alert_circle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Details &amp; Activity"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/file_detail_bs_remove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="34dp"
+        android:paddingVertical="12dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_delete_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:text="Remove"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
