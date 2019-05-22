@@ -26,7 +26,7 @@ public class AddBottomSheet extends BottomSheetDialogFragment implements View.On
     private FabBottomSheetListener mListener;
 
     public interface FabBottomSheetListener {
-        void onItemPressed(View view);
+        void onAddBottomSheetItemPressed(View view);
     }
 
     public void setFabBottomSheetListener(FabBottomSheetListener mListener) {
@@ -84,7 +84,7 @@ public class AddBottomSheet extends BottomSheetDialogFragment implements View.On
     @Override
     public void onClick(View v) {
         if (mListener != null) {
-            mListener.onItemPressed(v);
+            mListener.onAddBottomSheetItemPressed(v);
         }
     }
 }

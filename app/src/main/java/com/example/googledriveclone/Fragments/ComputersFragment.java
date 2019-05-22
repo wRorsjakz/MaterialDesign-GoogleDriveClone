@@ -128,6 +128,11 @@ public class ComputersFragment extends Fragment implements FilesRVAdapter.filesR
         });
     }
 
+    @Override
+    public void onItemClicked(int position, float[] coordinates) {
+
+    }
+
     /**
      * Fired when toggle icon pressed
      * 1) Update sharedPref
@@ -144,10 +149,7 @@ public class ComputersFragment extends Fragment implements FilesRVAdapter.filesR
         initialiseRV();
     }
 
-    @Override
-    public void onItemClicked(int position) {
-        Toast.makeText(getContext(), "Position : " + position, Toast.LENGTH_SHORT).show();
-    }
+
 
 
 

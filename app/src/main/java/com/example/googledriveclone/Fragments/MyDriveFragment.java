@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.googledriveclone.BottomSheet.AddBottomSheet;
 import com.example.googledriveclone.BottomSheet.DetailBottomSheet;
 import com.example.googledriveclone.Helper.RVScrollListenerHelper;
 import com.example.googledriveclone.Helper.SwipeRefreshHelper;
@@ -48,6 +47,20 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
     // Bottom Sheet Dialog
     private DetailBottomSheet detailBottomSheet;
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    // Interface to inform Files Fragment of item clicked
+    public interface MyDriveItemClickedListener {
+        void myDriveItemClicked(int position, float[] coordinates);
+    }
+
+    private MyDriveItemClickedListener listener;
+
+    public void setMyDriveItemClickedListener(MyDriveItemClickedListener listener) {
+        this.listener = listener;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,7 +72,6 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.my_drive_rv);
-        //recyclerView.canScrollVertically(-1);
         swipeRefreshLayout = view.findViewById(R.id.my_drive_swipeRefresh);
         fab = getActivity().findViewById(R.id.main_fab);
 
@@ -162,6 +174,8 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
         });
     }
 
+
+
     /**
      * Toggle RecyclerView's layoutConfig between GridLayout and LinearLayout
      */
@@ -180,13 +194,13 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
     }
 
     /**
-     * RecyclerView Item Clicked
-     *
+     * Recyclerview item clicked
      * @param position
+     * @param coordinates
      */
     @Override
-    public void onItemClicked(int position) {
-        Toast.makeText(getContext(), "Item Position : " + position, Toast.LENGTH_SHORT).show();
+    public void onItemClicked(int position, float[] coordinates) {
+        listener.myDriveItemClicked(position, coordinates);
     }
 
     /**

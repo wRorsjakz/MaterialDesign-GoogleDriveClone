@@ -1,4 +1,4 @@
-package com.example.googledriveclone.Fragments;
+package com.example.googledriveclone.BottomNavFragments;
 
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -10,11 +10,11 @@ import android.view.ViewGroup;
 
 import com.example.googledriveclone.R;
 
-public class HomeFragment extends Fragment {
+public class SharedFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_shared, container, false);
     }
 }

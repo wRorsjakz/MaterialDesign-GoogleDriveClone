@@ -30,10 +30,10 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import com.example.googledriveclone.Fragments.FilesFragment;
-import com.example.googledriveclone.Fragments.HomeFragment;
-import com.example.googledriveclone.Fragments.SharedFragment;
-import com.example.googledriveclone.Fragments.StarredFragment;
+import com.example.googledriveclone.BottomNavFragments.FilesFragment;
+import com.example.googledriveclone.BottomNavFragments.HomeFragment;
+import com.example.googledriveclone.BottomNavFragments.SharedFragment;
+import com.example.googledriveclone.BottomNavFragments.StarredFragment;
 import com.example.googledriveclone.Transitions.FadeInTransition;
 import com.example.googledriveclone.Transitions.FadeOutTransition;
 import com.example.googledriveclone.Transitions.SimpleTransitionListener;
@@ -101,7 +101,8 @@ public class MainActivity extends AppCompatActivity implements
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
+        appBarLayout.setExpanded(true);
+        fab.show();
         switch (menuItem.getItemId()) {
             case R.id.bottom_nav_home:
                 getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, new HomeFragment()).commit();
@@ -235,7 +236,7 @@ public class MainActivity extends AppCompatActivity implements
 
 
     @Override
-    public void onItemPressed(View view) {
+    public void onAddBottomSheetItemPressed(View view) {
         Toast.makeText(this, "" + view.getId(), Toast.LENGTH_SHORT).show();
         addBottomSheet.dismiss();
     }

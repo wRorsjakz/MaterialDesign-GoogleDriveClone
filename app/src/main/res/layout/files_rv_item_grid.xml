@@ -5,13 +5,27 @@
     android:layout_height="180dp"
     android:padding="8dp">
 
-    <ImageView
-        android:id="@+id/files_rv_grid_icon"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/ic_folder_yellow_48dp" />
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/files_rv_title_grid"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/files_rv_grid_icon"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_folder_yellow_48dp" />
+
+        <ImageView
+            android:id="@+id/center_of_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+
 
     <ImageButton
         android:id="@+id/files_rv_openmenu_grid"
@@ -32,10 +46,10 @@
         android:layout_marginBottom="8dp"
         android:layout_toStartOf="@id/files_rv_openmenu_grid"
         android:layout_toEndOf="@id/files_rv_pad_grid"
+        android:gravity="center"
         android:maxLines="2"
         android:paddingHorizontal="0dp"
         android:text="Assignments"
-        android:gravity="center"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="14sp" />
