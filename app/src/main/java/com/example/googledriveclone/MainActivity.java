@@ -1,25 +1,7 @@
 package com.example.googledriveclone;
 
 import android.content.Intent;
-
-import androidx.annotation.NonNull;
-
-import com.example.googledriveclone.BottomSheet.AddBottomSheet;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.core.content.ContextCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
-import androidx.appcompat.widget.Toolbar;
-
 import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.util.Log;
@@ -30,14 +12,35 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+
 import com.example.googledriveclone.BottomNavFragments.FilesFragment;
 import com.example.googledriveclone.BottomNavFragments.HomeFragment;
 import com.example.googledriveclone.BottomNavFragments.SharedFragment;
 import com.example.googledriveclone.BottomNavFragments.StarredFragment;
+import com.example.googledriveclone.BottomSheet.AddBottomSheet;
+import com.example.googledriveclone.Fragments.DetailsFragment;
+import com.example.googledriveclone.PagerAdapter.BottomNavPagerAdapter;
 import com.example.googledriveclone.Transitions.FadeInTransition;
 import com.example.googledriveclone.Transitions.FadeOutTransition;
+import com.example.googledriveclone.Transitions.PopTransformation;
 import com.example.googledriveclone.Transitions.SimpleTransitionListener;
+import com.example.googledriveclone.ViewPagers.BottomNavCustomViewPager;
 import com.github.pavlospt.roundedletterview.RoundedLetterView;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements
         BottomNavigationView.OnNavigationItemSelectedListener, AddBottomSheet.FabBottomSheetListener {
@@ -48,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements
     private BottomNavigationView bottomNav;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private FrameLayout fragmentContainer;
+    private BottomNavCustomViewPager viewpager;
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
     private CollapsingToolbarLayout collapsingToolbarLayout;
@@ -89,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements
         bottomNav = findViewById(R.id.main_bottom_nav);
         drawerLayout = findViewById(R.id.main_drawer_layout);
         navigationView = findViewById(R.id.main_navigationview_id);
-        fragmentContainer = findViewById(R.id.main_fragment_container);
+        viewpager = findViewById(R.id.main_viewpager);
         fab = findViewById(R.id.main_fab);
         profileIcon = findViewById(R.id.main_icon);
         hamburgerIcon = findViewById(R.id.main_hamurger_icon);
@@ -97,24 +100,59 @@ public class MainActivity extends AppCompatActivity implements
         bottomNav.setItemIconTintList(null);
         bottomNav.setOnNavigationItemSelectedListener(this);
         setSupportActionBar(toolbar);
+        setupViewPager();
+    }
+
+    /**
+     * Set up ViewPager on main screen which is tied to the bottom navigation bar
+     */
+    private void setupViewPager() {
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(new HomeFragment());
+        fragments.add(new StarredFragment());
+        fragments.add(new SharedFragment());
+        fragments.add(new FilesFragment());
+
+        // Disable side-to-side scrolling
+        viewpager.disableScroll(true);
+        viewpager.invalidate();
+
+        BottomNavPagerAdapter adapter = new BottomNavPagerAdapter(getSupportFragmentManager(), fragments);
+        viewpager.setAdapter(adapter);
+
+        // Set up custom bottom nav viewpager animation
+        viewpager.setPageTransformer(true, new PopTransformation());
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        Fragment topFragment;
+
+        List<Fragment> list = getSupportFragmentManager().getFragments();
+        //get last one
+        if(list.size() != 0){
+            topFragment = list.get(list.size() - 1);
+            if(topFragment instanceof DetailsFragment){
+                topFragment.setUserVisibleHint(false);
+                onBackPressed();
+            }
+        }
+
         appBarLayout.setExpanded(true);
         fab.show();
         switch (menuItem.getItemId()) {
             case R.id.bottom_nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, new HomeFragment()).commit();
+                viewpager.setCurrentItem(0);
                 break;
             case R.id.bottom_nav_starred:
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, new StarredFragment()).commit();
+                viewpager.setCurrentItem(1);
                 break;
             case R.id.bottom_nav_shared:
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, new SharedFragment()).commit();
+                viewpager.setCurrentItem(2);
                 break;
             case R.id.bottom_nav_files:
-                getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_container, new FilesFragment()).commit();
+                viewpager.setCurrentItem(3);
                 break;
         }
 

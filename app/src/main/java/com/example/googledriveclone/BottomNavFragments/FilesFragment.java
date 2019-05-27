@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,7 @@ public class FilesFragment extends Fragment implements MyDriveFragment.MyDriveIt
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.d(TAG, "onCreateView: FilesFragment Created");
         return inflater.inflate(R.layout.fragment_files, container, false);
     }
 
@@ -71,12 +73,12 @@ public class FilesFragment extends Fragment implements MyDriveFragment.MyDriveIt
     }
 
     private void setupTabLayout() {
+        titles.clear();
+        fragments.clear();
 
         // Header for tabs
         titles.add("My Drive");
         titles.add("Computers");
-
-
         // Fragments
         MyDriveFragment myDriveFragment = new MyDriveFragment();
         ComputersFragment computersFragment = new ComputersFragment();
@@ -114,10 +116,11 @@ public class FilesFragment extends Fragment implements MyDriveFragment.MyDriveIt
 
         // Carry out fragment transaction
         if (getActivity() != null) {
-
+            Log.d(TAG, "myDriveItemClicked: getActivity != null");
             FragmentManager fragmentManager2 = getActivity().getSupportFragmentManager();
 
             if (fragmentManager2 != null) {
+                Log.d(TAG, "myDriveItemClicked: fragmentManager2 != null");
                 FragmentTransaction fragmentTransaction2 = fragmentManager2.beginTransaction();
                 DetailsFragment fragment2 = new DetailsFragment(animationSettings);
                 fragmentTransaction2.addToBackStack(null);
@@ -125,6 +128,7 @@ public class FilesFragment extends Fragment implements MyDriveFragment.MyDriveIt
                 fragmentTransaction2.hide(FilesFragment.this);
                 fragmentTransaction2.add(R.id.main_fragment_container, fragment2);
                 fragmentTransaction2.commit();
+                Log.d(TAG, "myDriveItemClicked: Commit");
             }
         }
     }

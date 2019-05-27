@@ -91,8 +91,8 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
      * Set up some dummy data for the recyclerview to show
      */
     private void setupDummyData() {
+        items.clear();
         items.add(new FilesRVModel("NULL", "NULL", "NULL")); // Index 0 is the RV Header
-
         items.add(new FilesRVModel("Adobe Illustrator Art", "Blue", "15/05/2019"));
         items.add(new FilesRVModel("Assignments", "Yellow", "15/05/2019"));
         items.add(new FilesRVModel("Projects", "Yellow", "02/02/2019"));
@@ -103,21 +103,7 @@ public class MyDriveFragment extends Fragment implements FilesRVAdapter.filesRVI
         items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
         items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
         items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Red", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Red", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Grey", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
-        items.add(new FilesRVModel("Adobe Illustrator Art", "Yellow", "15/05/2019"));
         items.add(new FilesRVModel("Pictures", "Yellow", "15/05/2019"));
-
-
     }
 
     /**

@@ -106,12 +106,21 @@
 
             </com.google.android.material.appbar.AppBarLayout>
 
-
             <FrameLayout
                 android:id="@+id/main_fragment_container"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+                android:layout_height="match_parent">
+
+                <com.example.googledriveclone.ViewPagers.BottomNavCustomViewPager
+                    android:id="@+id/main_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+            </FrameLayout>
+
+
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/main_fab"

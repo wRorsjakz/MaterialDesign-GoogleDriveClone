@@ -103,6 +103,7 @@ public class ComputersFragment extends Fragment implements FilesRVAdapter.filesR
      * Set up some dummy data for the recyclerview to show
      */
     private void setupDummyData(){
+        items.clear();
         items.add(new FilesRVModel("NULL", "Blue", "NULL")); // Index 0 is the RV Header
         items.add(new FilesRVModel("Adobe Illustrator Art", "Blue", "15/05/2019"));
     }
